@@ -63,23 +63,36 @@
 ### Installation
 
 1. Cloner le repo
-  ```sh
-    git clone https://github.com/rosedorleans/Vinted.git
-  ```
-2. Install NPM packages
-  ```sh
-    npm run dev
-  ```
-    (et dans un autre terminal)
-  ```sh
-    php artisan serve
-  ```
+    ```sh
+        git clone https://github.com/rosedorleans/Vinted.git
+    ```
+2. Installer NPM packages
+    ```sh
+        npm install
+    ```
+    ou alors
+    ```sh
+        npm install --global yarn
+    ```
+    et
+    ```sh
+        yarn install
+    ```
+    
+2. Lancer le serveur
+    ```sh
+        npm run dev
+    ```
+    puis dans un autre terminal
+    ```sh
+        php artisan serve
+    ```
 
 3. créer une BDD dans phpmyadmin <br>
-  changer .env : DB_DATABASE= (nomDelaBDD)
-  ```sh
-    php artisan migrate
-  ```
+    changer .env : DB_DATABASE= (nomDelaBDD)
+    ```sh
+        php artisan migrate
+    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

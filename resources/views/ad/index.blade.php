@@ -16,8 +16,17 @@
             x-show="show"
             x-transition
             x-init="setTimeout(() => show = false, 2000)"
-            class="text-sm text-gray-600 dark:text-gray-400"
+            class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-green-400"
         >{{ __('Saved.') }}</p>
+    @endif
+    @if (session('status') === 'ad-edited')
+        <p
+            x-data="{ show: true }"
+            x-show="show"
+            x-transition
+            x-init="setTimeout(() => show = false, 2000)"
+            class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-green-400"
+        >{{ __('Edited.') }}</p>
     @endif
 
     <div class="py-8">
@@ -28,32 +37,33 @@
                         <section>
                             <header>
                                 <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
-                                    Ad n°{{ $ad->id }}
+                                {{ $ad->title }}
                                 </h2>
                             </header>
                             <div>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                    {{ $ad->title }}
-                                </p>
-                                <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
                                     {{ $ad->description }}
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                    Author : {{ $ad->author->name }}
+                                    Price : {{ $ad->price }} €
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                    Assignee : {{ $ad->assignee->name }}
+                                    Condition : {{ $ad->condition->name }}
                                 </p>
                                 <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-                                    {{ $ad->due_date }}
+                                    Seller : {{ $ad->user->name }}
                                 </p>
-                                @if ($ad->file)
-                                    <img :href="{{ $ad->file->path }}">
+
+                                @if ($ad->photos)
+                                    <img :href="{{ $ad->photos->path }}">
                                 @endif
                             </div>
                         </section>
                     </div>
                     <div class="sm:px-6 lg:px-8 pt-8 dark:text-gray-400">
+                        <x-nav-link :href="route('ad.show', $ad->id)" :active="request()->routeIs('ad.show')">
+                            {{ __('Show') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('ad.edit', $ad->id)" :active="request()->routeIs('ad.edit')">
                             {{ __('Edit') }}
                         </x-nav-link>

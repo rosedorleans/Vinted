@@ -6,6 +6,10 @@ use App\Http\Requests\AdRequest;
 use App\Http\Resources\AdCollection;
 use App\Models\Ad;
 use App\Models\User;
+use App\Models\Category;
+use App\Models\City;
+use App\Models\Condition;
+use App\Models\Delivery;
 use App\Models\File;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -21,7 +25,7 @@ class AdController extends Controller
     public function index(): View
     {
         return view('ad.index', [
-            'ads' => Ad::all()
+            'ads' => Ad::all(),
         ]);
     }
 
@@ -36,11 +40,16 @@ class AdController extends Controller
     }
 
     /**
-     * add a new ad.
+     * Display the ad's create form.
      */
     public function create(): View
     {
-        return view('ad.create', []);
+        return view('ad.create', [
+            'categories' => Category::all(),
+            'cities' => City::all(),
+            'conditions' => Condition::all(),
+            'deliveries' => Delivery::all(),
+        ]);
     }
 
     /**
@@ -70,21 +79,28 @@ class AdController extends Controller
     }
 
     /**
-     * Display the ad's form.
+     * Display the ad's update form.
      */
     public function edit(Ad $ad): View
     {
         return view('ad.edit', [
-            'ad' => $ad
+            'ad' => $ad,
+            'categories' => Category::all(),
+            'cities' => City::all(),
+            'conditions' => Condition::all(),
+            'deliveries' => Delivery::all(),
         ]);
     }
 
     /**
      * Update the ad's information.
      */
-    public function update(Request $request): RedirectResponse
+    public function update($id, AdRequest $request): RedirectResponse
     {
-        return Redirect::route('ad.edit')->with('status', 'ad-created');
+        $ad = Ad::find($id);
+        $ad->update($request->all());
+
+        return Redirect::route('dashboard')->with('status', 'ad-edited');
     }
 
     /**

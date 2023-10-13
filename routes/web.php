@@ -33,7 +33,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard/ad/{ad}', [AdController::class, 'show'])->name('ad.show');
     Route::post('/dashboard/ad', [AdController::class, 'post'])->name('ad.post');
     Route::get('/dashboard/ad/{ad}/edit', [AdController::class, 'edit'])->name('ad.edit');
-    Route::patch('/dashboard/ad', [AdController::class, 'update'])->name('ad.update');
+    Route::patch('/dashboard/ad/{ad}', [AdController::class, 'update'])->name('ad.update');
     Route::delete('/dashboard/ad', [AdController::class, 'destroy'])->name('ad.destroy');
 });
 
