@@ -1,4 +1,3 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
 <a name="readme-top"></a>
 
 <!-- TABLE OF CONTENTS -->
@@ -27,15 +26,11 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
-
-
-
-<p align="right">Projet : Site de petites annonces</p>
-<p align="right">Description : </p>
-<p align="right">Développement d'une Plateforme d'Annonces de Biens d'Occasion avec Interface d'Administration sur Laravel.</p>
-<p align="right">Introduction :</p>
-<p align="right">
+<h1>Projet : Site de petites annonces</h1>
+<h2>Description : </h2>
+<p>Développement d'une Plateforme d'Annonces de Biens d'Occasion avec Interface d'Administration sur Laravel.</p>
+<h2>Introduction :</h2>
+<p>
   Le projet se concentre sur la création d'une plateforme en ligne permettant aux utilisateurs de publier des annonces pour des biens d'occasion. Cette plateforme sera développée en utilisant le framework Laravel en PHP et comportera également une interface d'administration pour la gestion du contenu de super admin.
   L'interface d'administration permettra aux administrateurs de gérer le contenu du site, de valider ou de refuser les annonces soumises, de gérer les comptes d'utilisateurs, et de surveiller l'activité du site.
   Des fonctionnalités de sécurité telles que la validation des données, la protection contre les attaques CSRF, et la gestion des sessions devront être implémentées pour assurer la sécurité des utilisateurs.
@@ -75,12 +70,12 @@
   ```sh
     npm run dev
   ```
-  (et dans un autre terminal)
+    (et dans un autre terminal)
   ```sh
     php artisan serve
   ```
 
-3. créer une BDD dans phpmyadmin
+3. créer une BDD dans phpmyadmin <br>
   changer .env : DB_DATABASE= (nomDelaBDD)
   ```sh
     php artisan migrate
