@@ -2,18 +2,18 @@
 
 <!-- TABLE OF CONTENTS -->
 <details>
-  <summary>Table of Contents</summary>
+  <summary>Table des matières</summary>
   <ol>
     <li>
-      <a href="#about-the-project">About The Project</a>
+      <a href="#a-propos-du-projet">About The Project</a>
       <ul>
-        <li><a href="#built-with">Built With</a></li>
+        <li><a href="#developpe-avec">Built With</a></li>
       </ul>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#prerequis">Prerequisites</a></li>
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
@@ -24,7 +24,7 @@
 
 
 <!-- ABOUT THE PROJECT -->
-## About The Project
+## A propos du projet
 
 <h1>Projet : Site de petites annonces</h1>
 <h2>Description : </h2>
@@ -37,22 +37,22 @@
 </p>
 
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">top</a>)</p>
 
 
 
-### Built With
+### Développé avec
 
 * [![Laravel][Laravel.com]][Laravel-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">top</a>)</p>
 
 
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-### Prerequisites
+### Prérequis
 
 * PHP 8.1.13
 * 
@@ -89,17 +89,18 @@
     ```
 
 3. créer une BDD dans phpmyadmin <br>
-    changer .env : DB_DATABASE= (nomDelaBDD)
+    changer .env : DB_DATABASE= (nomDelaBDD) <br>
+    puis lancer les migrations
     ```sh
         php artisan migrate
     ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">top</a>)</p>
 
 
 
 <!-- Avancée -->
-## avancee
+## Avancée
 
 - [x] Une page public avec toutes les annonces listées.
 - [x] Une page de détails pour chaque annonce.
@@ -112,7 +113,7 @@
 - [x] Un utilisateur doit être connecté pour créer une annonce.
 - [x] Lorsqu’un admin se connecte, il a accès à un crud gérer les annonces.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p align="right">(<a href="#readme-top">top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
