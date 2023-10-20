@@ -1,17 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+        <h2 class="font-semibold text-xl text-dark-800 dark:text-dark-200 leading-tight">
             {{ __('Edit ad') }}
         </h2>
     </x-slot>
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-gray-400">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-dark-400">
         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
             {{ __('Back') }}
         </x-nav-link>
     </div>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
+            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
                         @csrf
@@ -69,7 +69,7 @@
 
                         <div>
                             <x-input-label for="photos" :value="__('Photos')" />
-                            <x-text-input id="photos" name="photos" type="file" autofocus autocomplete="photos" :value="old('photos', $ad->photos)" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
+                            <x-text-input id="photos" name="photos" type="file" autofocus autocomplete="photos" :value="old('photos', $ad->photos)" class="block w-full text-sm text-dark-900 border border-gray-300 rounded-lg cursor-pointer dark:text-dark-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" />
                             <x-input-error class="mt-2" :messages="$errors->get('photos')" />
                         </div>
 

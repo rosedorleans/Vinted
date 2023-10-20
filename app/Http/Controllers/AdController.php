@@ -57,6 +57,10 @@ class AdController extends Controller
      */
     public function post(AdRequest $request): RedirectResponse
     {
+        $now = date('Y-m-d H:i:s');
+        $request['published_at'] = $now;
+        $request['expired_at'] = date('Y-m-d H:i:s', strtotime($now. ' + 14 days'));
+
         $req = $request->all();
 
         $fileModel = new File;
@@ -106,12 +110,11 @@ class AdController extends Controller
     /**
      * Delete the ad.
      */
-    public function destroy(Request $request): RedirectResponse
+    public function destroy($id, Request $request): RedirectResponse
     {
-        $ad = $request->ad();
-
+        $ad = Ad::find($id);
         $ad->delete();
 
-        return Redirect::to('/');
+        return Redirect::route('dashboard')->with('status', 'ad-destroyed');
     }
 }

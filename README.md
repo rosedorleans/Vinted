@@ -17,7 +17,7 @@
         <li><a href="#installation">Installation</a></li>
       </ul>
     </li>
-    <li><a href="#usage">Usage</a></li>
+    <li><a href="#avancee">Avancée</a></li>
   </ol>
 </details>
 
@@ -98,10 +98,20 @@
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- Avancée -->
+## avancee
 
-
+- [x] Une page public avec toutes les annonces listées.
+- [x] Une page de détails pour chaque annonce.
+- L’utilisateur pourra effectuer les actions de crud sur son annonce : 
+- [x] Modifier
+- [x] Supprimer
+- [ ] Possibilité d'uploader une photo
+- [x] Un utilisateur ne pourra pas altérer les annonces des autres utilisateurs.
+- [x] Un utilisateur connecté peut voir le contact d’un autre utilisateur pour le contacter sur une annonce.
+- [x] Un utilisateur non connecté peut voir une annonce mais pas les informations de contact.
+- [x] Un utilisateur doit être connecté pour créer une annonce.
+- [x] Lorsqu’un admin se connecte, il a accès à un crud gérer les annonces.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

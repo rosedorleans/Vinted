@@ -26,18 +26,13 @@ class AdRequest extends FormRequest
             'title' => ['string', 'max:255'],
             'category_id' => ['integer', 'max:3'],
             'description' => ['string'],
-            'price' => ['integer', 'max:9999'], //TODO: decimal => Validation rule decimal requires at least 1 parameters.
             'address' => ['string', 'max:255'],
             'city_id' => ['integer', 'max:3'],
             'photos' => ['image'],
             'condition_id' => ['integer', 'max:3'],
-            'brand' => ['string', 'max:255'],
-            'model' => ['string', 'max:255'],
-            'year' => ['integer'],
-            'size' => ['string', 'max:255'],
             'delivery_id' => ['integer', 'max:3'],
-            'warranty' => ['string', 'max:255'],
             'is_exchangeable' => ['boolean'],
+            'user_id' => ['integer', 'max:3'],
         ];
     }
 }

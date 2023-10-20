@@ -29,7 +29,10 @@ class Ad extends Model
         'size',
         'delivery_id',
         'warranty',
-        'is_exchangeable'
+        'is_exchangeable',
+        'published_at',
+        'expired_at',
+        'user_id'
     ];
 
     /**
