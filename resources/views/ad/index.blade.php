@@ -10,33 +10,40 @@
         </x-nav-link>
     </div>
 
-    @if (session('status') === 'ad-created')
+    <!-- s'il y a une erreur on affiche le message d'erreur -->
+    @if (session('status') == "error")
+        <p
+            x-data="{ show: true }"
+            x-show="show"
+            x-transition
+            x-init="setTimeout(() => show = false, 2000)"
+            class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-red-400"
+        >Error</p>
+    @else
+        <!-- sinon, selon le status, on affiche le message de confirmation -->
         <p
             x-data="{ show: true }"
             x-show="show"
             x-transition
             x-init="setTimeout(() => show = false, 2000)"
             class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-green-400"
-        >{{ __('Saved.') }}</p>
+        >
+            @switch(session('status'))
+                @case('ad-created')
+                    {{ __('Saved.') }}
+                    @break
+            
+                @case('ad-edited')
+                    {{ __('Edited.') }}
+                    @break
+            
+                @case('ad-destroyed')
+                {{ __('Deleted.') }}
+                    @break
+            @endswitch
+        </p>
     @endif
-    @if (session('status') === 'ad-edited')
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-green-400"
-        >{{ __('Edited.') }}</p>
-    @endif
-    @if (session('status') === 'ad-destroyed')
-        <p
-            x-data="{ show: true }"
-            x-show="show"
-            x-transition
-            x-init="setTimeout(() => show = false, 2000)"
-            class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6 pt-8 dark:text-green-400"
-        >{{ __('Deleted.') }}</p>
-    @endif
+
 
     <div class="py-8">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
@@ -60,9 +67,11 @@
                                     Condition : {{ $ad->condition->name }}
                                 </p>
                                 <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
+                                    <!-- si utilisateur connecté + si c'est son annonce, on affiche pas les infos -->
                                     @if (Auth::user())
                                         @if (Auth::user()->id === $ad->user->id)
                                             Seller : Me
+                                        <!-- si c'est son annonce ou si il est admin, afficher les infos -->
                                         @elseif  (Auth::user()->id === $ad->user->id || Auth::user()->role === "admin")
                                             Seller : {{ $ad->user->name }} <br> 
                                             Contacts : {{ $ad->user->contacts }}

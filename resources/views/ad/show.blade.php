@@ -55,9 +55,11 @@
                             Exchangeable : {{ ($ad->is_exchangeable == 0 ? "No" : "Yes") }}
                         </p>
                         <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
+                            <!-- si utilisateur connecté + si c'est son annonce, on affiche pas les infos -->
                             @if (Auth::user())
                                 @if (Auth::user()->id === $ad->user->id)
                                     Seller : Me
+                                <!-- si c'est son annonce ou si il est admin, afficher les infos -->
                                 @elseif  (Auth::user()->id === $ad->user->id || Auth::user()->role === "admin")
                                     Seller : {{ $ad->user->name }} <br> 
                                     Contacts : {{ $ad->user->contacts }}
