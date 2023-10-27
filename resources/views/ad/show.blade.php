@@ -70,7 +70,7 @@
                         </p>
 
                         @if ($ad->photos)
-                            <img :href="{{ $ad->photos->path }}">
+                            <img src="../../public/{{ $ad->photos }}" class="ad-photo">
                         @endif
                     </div>
                 </div>

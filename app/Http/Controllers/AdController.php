@@ -57,24 +57,31 @@ class AdController extends Controller
      */
     public function post(AdRequest $request): RedirectResponse
     {
+        // on définit la date de publication (aujourd'hui)
+        // on définit la date d'expiration (dans 2 semaines)
+
         $now = date('Y-m-d H:i:s');
         $request['published_at'] = $now;
         $request['expired_at'] = date('Y-m-d H:i:s', strtotime($now. ' + 14 days'));
 
         $req = $request->all();
 
-        $fileModel = new File;
+        // on vérifie s'il y a une image dans la requete de création de post
+        // on vérifie si l'image est de type valide
+        // on lui donne un nom et on l'enregistre dans le dossier "storage" dans public (modifié dans config/filesystems.php)
+        // on enregistre son chemin dans l'objet post
+
         if($request->file()) {
             $validation = $request->validate([
-                'file'  =>  'required|file|image|mimes:jpeg,png,jpg|max:2048'
+                'photos'  =>  'required|file|image|mimes:jpeg,png,jpg|max:2048'
             ]);
-        
-            $file = $validation['file'];
-            $fileName = 'ad-'.time().'.'.$file->getClientOriginalExtension();
+            $photos = $validation['photos'];
 
-            $storage = Storage::disk('public')->put($fileName, $file);
+            $photosName = 'ad-'.time().'.'.$photos->getClientOriginalExtension();
 
-            $req["file"] = Storage::url($storage);
+            $storage = Storage::disk('public_uploads')->put($photosName, $photos);
+
+            $req["photos"] = Storage::url($storage);
         }
 
         Ad::create($req);
@@ -87,6 +94,8 @@ class AdController extends Controller
      */
     public function edit(Ad $ad): View
     {
+        // afficher la page d'update
+
         return view('ad.edit', [
             'ad' => $ad,
             'categories' => Category::all(),
@@ -101,8 +110,25 @@ class AdController extends Controller
      */
     public function update($id, AdRequest $request): RedirectResponse
     {
+        // lors de l'update je remplace l'image comme pour la création
+
         $ad = Ad::find($id);
-        $ad->update($request->all());
+        $req = $request->all();
+
+        if($request->file()) {
+            $validation = $request->validate([
+                'photos'  =>  'required|file|image|mimes:jpeg,png,jpg|max:2048'
+            ]);
+            $photos = $validation['photos'];
+
+            $photosName = 'ad-'.time().'.'.$photos->getClientOriginalExtension();
+
+            $storage = Storage::disk('public_uploads')->put($photosName, $photos);
+
+            $req["photos"] = Storage::url($storage);
+        }
+
+        $ad->update($req);
 
         return Redirect::route('dashboard')->with('status', 'ad-edited');
     }

@@ -59,12 +59,6 @@
                         </div>
 
                         <div>
-                            <x-input-label for="photos" :value="__('Photos')" />
-                            <x-text-input id="photos" name="photos" type="file" autofocus class="block w-full text-sm text-dark-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-dark-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" />
-                            <x-input-error class="mt-2" :messages="$errors->get('photos')" />
-                        </div>
-
-                        <div>
                             <x-input-label for="condition_id" :value="__('Condition')" />
                             <select id="condition_id" name="condition_id" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm mt-1 block w-full">
                                 @foreach ($conditions as $condition)
@@ -121,6 +115,12 @@
                         </div>
 
                         <div>
+                            <x-input-label for="photos" :value="__('Photos')" />
+                            <x-text-input id="photos" name="photos" type="file" autofocus class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block w-full text-sm border rounded-lg cursor-pointer focus:outline-none" />
+                            <x-input-error class="mt-2" :messages="$errors->get('photos')" />
+                        </div>
+
+                        <div hidden>
                             <x-input-label for="user_id" :value="__('User id')" />
                             <x-text-input id="user_id" name="user_id" type="number" class="mt-1 block w-full" autofocus value="{{ Auth::user()->id }}" />
                             <x-input-error class="mt-2" :messages="$errors->get('user_id')" />

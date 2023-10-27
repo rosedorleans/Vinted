@@ -30,7 +30,7 @@
         >
             @switch(session('status'))
                 @case('ad-created')
-                    {{ __('Saved.') }}
+                    {{ __('Created.') }}
                     @break
             
                 @case('ad-edited')
@@ -38,7 +38,7 @@
                     @break
             
                 @case('ad-destroyed')
-                {{ __('Deleted.') }}
+                    {{ __('Deleted.') }}
                     @break
             @endswitch
         </p>
@@ -46,9 +46,9 @@
 
 
     <div class="py-8">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
+        <div class="flex flex-wrap gap-4 max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             @foreach ($ads as $ad)
-                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg flex justify-between">
+                <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg flex justify-between ad-card">
                     <div class="max-w-xl">
                         <section>
                             <header>
@@ -56,38 +56,46 @@
                                 {{ $ad->title }}
                                 </h2>
                             </header>
-                            <div>
-                                <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
-                                    {{ $ad->description }}
-                                </p>
-                                <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
-                                    Price : {{ $ad->price }} €
-                                </p>
-                                <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
-                                    Condition : {{ $ad->condition->name }}
-                                </p>
-                                <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
-                                    <!-- si utilisateur connecté + si c'est son annonce, on affiche pas les infos -->
-                                    @if (Auth::user())
-                                        @if (Auth::user()->id === $ad->user->id)
-                                            Seller : Me
-                                        <!-- si c'est son annonce ou si il est admin, afficher les infos -->
-                                        @elseif  (Auth::user()->id === $ad->user->id || Auth::user()->role === "admin")
-                                            Seller : {{ $ad->user->name }} <br> 
-                                            Contacts : {{ $ad->user->contacts }}
-                                        @endif
-                                    @else
-                                        Seller : {{ $ad->user->name }}
-                                    @endif
-                                </p>
+                            <div class="flex flex-col-reverse">
 
-                                @if ($ad->photos)
-                                    <img :href="{{ $ad->photos->path }}">
-                                @endif
+                                <div>
+                                    <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
+                                        {{ $ad->description }}
+                                    </p>
+                                    <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
+                                        Price : {{ $ad->price }} €
+                                    </p>
+                                    <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
+                                        Condition : {{ $ad->condition->name }}
+                                    </p>
+                                    <p class="mt-1 text-sm text-dark-600 dark:text-dark-400">
+                                        <!-- si utilisateur connecté + si c'est son annonce, on affiche pas les infos -->
+                                        @if (Auth::user())
+                                            @if (Auth::user()->id === $ad->user->id)
+                                                Seller : Me
+                                            <!-- si c'est son annonce ou si il est admin, afficher les infos -->
+                                            @elseif  (Auth::user()->id === $ad->user->id || Auth::user()->role === "admin")
+                                                Seller : {{ $ad->user->name }} <br> 
+                                                Contacts : {{ $ad->user->contacts }}
+                                            @endif
+                                        @else
+                                            Seller : {{ $ad->user->name }}
+                                        @endif
+                                    </p>
+                                </div>
+                                <div>
+                                    @if ($ad->photos)
+                                        <img src="public/{{ $ad->photos }}" class="ad-photo">
+                                    @endif
+                                </div>
                             </div>
+                        
                         </section>
                     </div>
-                    <div class="sm:px-6 lg:px-8 dark:text-dark-400 flex items-center">
+                    <div class="sm:px-6 lg:px-8 dark:text-dark-400 flex items-center max-h-24">
+                        <!-- s'il y a un utillisateur, on vérifie s'il a créé le post -->
+                        <!-- si oui, on lui permet de le modifier ou le supprimer, sinon rien -->
+                        <!-- s'il est admin on lui permet ces actions également -->
                         <x-nav-link :href="route('ad.show', $ad->id)" :active="request()->routeIs('ad.show')">
                             {{ __('Show') }}
                         </x-nav-link>
