@@ -4,5 +4,18 @@
 
 
 #background {
-    background-color: #007782;
+    background-color: #0077824a;
+}
+
+.ad-card {
+    width: 40%;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.ad-photo {
+    object-fit: cover;
+    width: 200px;
+    height: 200px;
+    margin: 1vh 0;
 }

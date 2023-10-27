@@ -67,6 +67,10 @@
                             </select>
                         </div>
 
+                        @if ($ad->photos)
+                            <img src="../../../public/{{ $ad->photos }}" class="ad-photo">
+                        @endif
+
                         <div>
                             <x-input-label for="photos" :value="__('Photos')" />
                             <x-text-input id="photos" name="photos" type="file" autofocus autocomplete="photos" :value="old('photos', $ad->photos)" class="block w-full text-sm text-dark-900 border border-gray-300 rounded-lg cursor-pointer dark:text-dark-400 focus:outline-none dark:border-gray-600 dark:placeholder-gray-400" />
