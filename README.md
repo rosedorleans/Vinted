@@ -106,7 +106,7 @@
 - [x] Une page de détails pour chaque annonce.
 - [x] L’utilisateur pourra modifier son annonce.
 - [x] L’utilisateur pourra supprimer son annonce.
-- [ ] Possibilité d'uploader une photo.
+- [x] Possibilité d'uploader une photo.
 - [x] Un utilisateur ne pourra pas altérer les annonces des autres utilisateurs.
 - [x] Un utilisateur connecté peut voir le contact d’un autre utilisateur pour le contacter sur une annonce.
 - [x] Un utilisateur non connecté peut voir une annonce mais pas les informations de contact.
